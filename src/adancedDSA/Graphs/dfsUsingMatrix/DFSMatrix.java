@@ -38,7 +38,7 @@ public class DFSMatrix {
 
     private static ArrayList<Integer> getReachableVertices(Integer[][] matrix, Integer vertex){
         ArrayList<Integer> vertices = new ArrayList<>();
-        for(int i =0;i< matrix.length ;i++){
+        for(int i =0;i<matrix.length;i++){
             if(matrix[vertex][i] == 1){
                 vertices.add(i);
             }

@@ -6,33 +6,21 @@ import java.util.Queue;
 
 public class Bfs {
     public static void main(String[] args) {
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-
-        ArrayList<Integer> l1 = new ArrayList<>();
-        l1.add(1);
-        l1.add(2);
-        adj.add(l1);
-
-        ArrayList<Integer> l2 = new ArrayList<>();
-        l2.add(2);
-        l2.add(4);
-        adj.add(l2);
-
-        ArrayList<Integer> l3 = new ArrayList<>();
-        l3.add(5);
-        l3.add(1);
-        adj.add(l3);
-
-        performBfs(adj);
-    }
-    static void performBfs(ArrayList<ArrayList<Integer>> adj){
-        boolean[] visited = new boolean[adj.size()];
-
-        Queue<Integer> queue = new LinkedList<>();
-
-
-
-
-
+        String str1 = "anand$%raj!*^$rahul ";
+        String str = str1.trim().replaceAll("[^A-Za-z]", " ");
+        String[] arr = new String[1];
+        arr[0] = "";
+        StringBuilder sb = new StringBuilder("");
+        for(int i = 0; i<str.length(); i++){
+            if(str.charAt(i) != ' '){
+             sb.append(str.charAt(i));
+            }else{
+                if(arr[0].length() < sb.length()){
+                    arr[0] = String.valueOf(sb);
+                }
+                sb = new StringBuilder("");
+            }
+       }
+        System.out.println(arr[0]);
     }
 }
