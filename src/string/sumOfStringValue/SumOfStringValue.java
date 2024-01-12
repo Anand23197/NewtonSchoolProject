@@ -15,11 +15,10 @@ public class SumOfStringValue {
 
         String  s = "suraj";
         int sum = 0;
-//        for(int i = 0;i<s.length();i++){
+        for(int i = 0;i<s.length();i++){
 
-            sum += characterMap.get('s');
-            sum += characterMap.get('u');
-//        }
+            sum += characterMap.get(s.charAt(i));
+        }
 
         System.out.println(sum);
     }
