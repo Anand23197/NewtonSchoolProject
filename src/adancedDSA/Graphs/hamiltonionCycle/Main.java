@@ -18,10 +18,10 @@ public class Main {
         adj2.add(3);
         adj.add(adj2);
 
-        ArrayList<Integer> adj3 = new ArrayList<>();
-        adj3.add(3);
-        adj3.add(4);
-        adj.add(adj3);
+//        ArrayList<Integer> adj3 = new ArrayList<>();
+//        adj3.add(3);
+//        adj3.add(4);
+//        adj.add(adj3);
 
         ArrayList<Integer> adj4 = new ArrayList<>();
         adj4.add(2);
