@@ -1,12 +1,10 @@
-package playground;
-import com.sun.tools.jconsole.JConsoleContext;
+package adancedDSA.Graphs.rottenOranges;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
-  static  class Pair{
+public class RottenOranges {
+    static  class Pair{
         int i;
         int j;
         int c;
@@ -16,20 +14,15 @@ public class Main {
             this.c = c;
         }
     }
-    public static void main (String[] args) throws IOException {
-       int[][] grid = {{2,1,1},{1,1,0},{0,1,1}};
-       int count = orangesRotting(grid);
-        System.out.println(count);
-    }
-    public static int orangesRotting(int[][] grid) {
+    public static void main(String[] args) {
+        int[][] grid = {{2,1,1},{1,1,0},{0,1,1}};
         int row = grid.length;
         int col = grid[0].length;
         boolean[][] vis = new boolean[row][col];
-
-        return solve(grid, vis, row, col);
+        int count = solve(grid, vis, row, col);
+        System.out.println(count);
     }
-
-   static int solve(int[][] grid, boolean[][] vis, int r, int c){
+    static int solve(int[][] grid, boolean[][] vis, int r, int c){
         Queue<Pair> queue = new LinkedList<>();
         int freshOranges = 0;
 
@@ -59,13 +52,11 @@ public class Main {
             for(int k = 0;k<4;k++){
                 int row = i+drow[k];
                 int col = j+dcol[k];
-                if(checkBoundry(r, c, row, col)){
-                    if(grid[row][col] == 1 && !vis[row][col]){
-                        grid[row][col] = 2;
-                        queue.add(new Pair(row, col, cnt+1));
-                        vis[row][col] = true;
-                        freshOranges -= 1;
-                    }
+                if(!checkBoundry(r, c, row, col, vis, grid)){
+                    grid[row][col] = 2;
+                    queue.add(new Pair(row, col, cnt+1));
+                    vis[row][col] = true;
+                    freshOranges -= 1;
                 }
 
             }
@@ -80,10 +71,7 @@ public class Main {
 
     }
 
-   static boolean checkBoundry(int row, int col, int drow, int dcol){
-         if((drow < 0 || drow >= row || dcol < 0 || dcol >= col)){
-             return false;
-         }
-         return true;
+   static boolean checkBoundry(int row, int col, int drow, int dcol,boolean[][] vis, int[][] grid){
+        return (drow < 0 || drow >= row || dcol < 0 || dcol >= col || grid[drow][dcol] != 1 || vis[drow][dcol]) ;
     }
 }
