@@ -6,84 +6,80 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-  static  class Pair{
-        int i;
-        int j;
-        int c;
-        Pair(int i, int j, int c){
-            this.i = i;
-            this.j = j;
-            this.c = c;
-        }
-    }
     public static void main (String[] args) throws IOException {
-       int[][] grid = {{2,1,1},{1,1,0},{0,1,1}};
-       int count = orangesRotting(grid);
-        System.out.println(count);
+       int row = 3;
+       int col = 5;
+
+        // 3 5
+        //1 2 3 4 5
+        //6 7 8 9 10
+        //11 12 13 14 15
+        //13
+       int[][] matrix =  {{1,2,3,4,5},
+                          {6,7,8,9,10},
+                          {11,12,13,14,15}};
+        int k = 13;
+        solve(row, col, matrix, k);
     }
-    public static int orangesRotting(int[][] grid) {
-        int row = grid.length;
-        int col = grid[0].length;
-        boolean[][] vis = new boolean[row][col];
 
-        return solve(grid, vis, row, col);
-    }
+    static void solve(int r, int c, int[][] matrix, int k){
 
-   static int solve(int[][] grid, boolean[][] vis, int r, int c){
-        Queue<Pair> queue = new LinkedList<>();
-        int freshOranges = 0;
-
-        //add all rotten oranges in queue and count all the fresh oranges
+        int row = 0, col = 0;
         for(int i = 0;i<r;i++){
             for(int j = 0;j<c;j++){
-                if(grid[i][j] == 2){
-                    queue.add(new Pair(i, j, 0));
-                    vis[i][j] = true;
-                }else if(grid[i][j] == 1){
-                    freshOranges += 1;
+                if(matrix[i][j] == k){
+                    row = i;
+                    col = j;
+                    break;
                 }
             }
         }
 
+        int i = row, j = col;
+        //going to top left i--, j--;
+        ArrayList<Integer> al  = new ArrayList<>();
+       while(row >= 0 && col >= 0){
+           al.add(matrix[row--][col--]);
+       }
 
-        int[] drow = {-1,1,0,0};
-        int[] dcol = {0,0,-1,1};
-
-        int cnt = 0;
-        while(!queue.isEmpty()){
-            int i = queue.peek().i;
-            int j = queue.peek().j;
-            int count = queue.peek().c;
-            queue.remove();
-            cnt = count;
-            for(int k = 0;k<4;k++){
-                int row = i+drow[k];
-                int col = j+dcol[k];
-                if(checkBoundry(r, c, row, col)){
-                    if(grid[row][col] == 1 && !vis[row][col]){
-                        grid[row][col] = 2;
-                        queue.add(new Pair(row, col, cnt+1));
-                        vis[row][col] = true;
-                        freshOranges -= 1;
-                    }
-                }
-
-            }
+       Collections.reverse(al);
+       // reverse string
+        for(int l : al){
+            System.out.print(l + " ");
         }
 
+       row = i;
+       col = j;
 
-        if(freshOranges == 0){
-            return cnt;
+        ++row;
+        ++col;
+       while(row < r && col < c){
+           System.out.print(matrix[row++][col++] + " ");
+       }
+        System.out.println();
+
+       row = i;
+       col = j;
+
+
+        ArrayList<Integer> al2  = new ArrayList<>();
+        while(row < r && col < c){
+           al2.add(matrix[row--][col++]);
         }
 
-        return -1;
+        Collections.reverse(al2);
+        for(int l : al2){
+            System.out.print(l + " ");
+        }
 
-    }
+        row = i;
+        col = j;
 
-   static boolean checkBoundry(int row, int col, int drow, int dcol){
-         if((drow < 0 || drow >= row || dcol < 0 || dcol >= col)){
-             return false;
-         }
-         return true;
+        ++row;
+        --col;
+        while(row < r && col >= 0){
+            System.out.print(matrix[row++][col--] + " ");
+        }
+
     }
 }
