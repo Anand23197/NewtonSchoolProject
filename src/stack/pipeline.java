@@ -38,7 +38,6 @@ public class pipeline {
                 //call this function for putting into the max
                 putIntoMax(frq, max);
 
-
                 Map.Entry<Integer, Integer> firstEntry = max.entrySet().iterator().next();
                 Integer firstKey = firstEntry.getKey();
                 Integer firstValue = firstEntry.getValue();
@@ -49,7 +48,8 @@ public class pipeline {
 
 
 
-            } else {
+            }
+            else {
                 Map.Entry<Integer, Integer> firstEntry = max.entrySet().iterator().next();
                 Integer firstKey = firstEntry.getKey();
 

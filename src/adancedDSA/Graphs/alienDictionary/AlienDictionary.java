@@ -42,7 +42,7 @@ public class AlienDictionary {
             }
         }
 
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         while(!queue.isEmpty()){
             int node = queue.remove();
             sb.append((char)(node + 'a'));
