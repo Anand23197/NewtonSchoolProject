@@ -3,7 +3,7 @@ package adancedDSA.Graphs.dijkstra;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-class Pair{
+ class Pair{
     int w;
     int n;
     Pair(int w, int n){
