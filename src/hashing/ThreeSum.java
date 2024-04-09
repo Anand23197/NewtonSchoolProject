@@ -2,7 +2,7 @@ package hashing;
 
 import java.util.HashSet;
 
-public class ThreeSome {
+public class ThreeSum {
 
     public static boolean find3Numbers(int[] A, int arr_size, int sum)
     {
